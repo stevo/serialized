@@ -1,0 +1,16 @@
+= Motivation
+
+Sometimes serialize methods for AR did not work form me - instead of serializing to YAML, it was saving values as DB Strings (i.e. true was serialized to "t").
+It usually happened in AR callbacks... weird...
+
+= Result
+
+Use serialized instead of serialize to worry no more
+
+    class User < ActiveRecord::Base
+
+    serialized :some_column_name, :another_column_name
+
+    #...
+
+    end
