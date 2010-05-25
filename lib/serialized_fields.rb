@@ -8,7 +8,7 @@ module SerializedFields
         if column_names.include?(column.to_s)
           self.class_eval do
             define_method("#{column}="){|val| write_attribute(column, val.to_yaml)}
-            define_method(column){YAML::load(read_attribute(column))}
+            define_method(column){read_attribute(column).nil? ? nil : YAML::load(read_attribute(column))}
           end
         else
           raise "There is no column named #{column}!"
